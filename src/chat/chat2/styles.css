@@ -19,6 +19,7 @@ body {
     width: 80%;
     box-sizing: border-box;
     position: relative;
+    overflow: hidden; /* 确保子元素不会溢出 */
 }
 
 #insertButton {
@@ -34,31 +35,37 @@ body {
 .animated-div {
     width: 100%;
     height: 30px;
-    opacity: 0;
-    transition: opacity 1s, transform 1s;
-}
-
-.animated-div.show-left {
     opacity: 1;
-    transform: translateX(0);
+    background-size: 200% 100%;
+    background-position: 100% 0;
+    transition: background-position 1.5s linear;
 }
 
-.animated-div.show-right {
-    opacity: 1;
-    transform: translateX(0);
-}
-
-.odd {
+.animated-div.odd {
     background-color: red;
-    transform: translateX(-100vw); /* 改为视口宽度 */
+    background-image: linear-gradient(to right, transparent, red);
 }
 
-.even {
+.animated-div.even {
     background-color: blue;
-    transform: translateX(100vw); /* 改为视口宽度 */
+    background-image: linear-gradient(to left, transparent, blue);
+}
+
+.animated-div.show {
+    background-position: 0 0;
 }
 
 .animated-div.remove {
-    transform: translateX(100vw);
-    opacity: 0;
+    animation: slide-out 1.5s forwards;
+}
+
+@keyframes slide-out {
+    0% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+    100% {
+        transform: translateX(100%);
+        opacity: 0;
+    }
 }
