@@ -1,0 +1,186 @@
+<!--
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Monaco Editor with Save and Load</title>
+    <style>
+        #container {
+            width: 800px;
+            height: 600px;
+        }
+    </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.30.1/min/vs/loader.min.js"></script>
+</head>
+<body>
+<div>
+    <select id="language-selector">
+        <option value="javascript">JavaScript</option>
+        <option value="python">Python</option>
+    </select>
+    <button id="save-button">Save</button>
+    <button id="load-button">Load</button>
+</div>
+<div id="container"></div>
+<script>
+    require.config({ paths: { 'vs': 'https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.30.1/min/vs' } });
+    require(['vs/editor/editor.main'], function () {
+        // 定义示例代码
+        const exampleCode = {
+            javascript: `// JavaScript example\nfunction helloWorld() {\n    console.log('Hello, world!');\n}\nhelloWorld();`,
+            python: `# Python example\ndef hello_world():\n    print('Hello, world!')\n\nhello_world()`
+        };
+
+        // 定义自定义白色背景主题
+        monaco.editor.defineTheme('myWhiteTheme', {
+            base: 'vs', // 使用 light 基础主题
+            inherit: true, // 继承基础主题的配置
+            rules: [{ background: 'FFFFFF' }],
+            colors: {
+                'editor.background': '#FFFFFF'
+            }
+        });
+
+        // 创建编辑器
+        let editor = monaco.editor.create(document.getElementById('container'), {
+            value: exampleCode.javascript,
+            language: 'javascript',
+            theme: 'vs-dark'
+        });
+
+        // 监听语言切换
+        document.getElementById('language-selector').addEventListener('change', function () {
+            let newLanguage = this.value;
+            monaco.editor.setModelLanguage(editor.getModel(), newLanguage);
+            editor.setValue(exampleCode[newLanguage]);
+        });
+
+        // 保存代码到服务器
+        document.getElementById('save-button').addEventListener('click', function () {
+            let code = editor.getValue();
+            let language = document.getElementById('language-selector').value;
+            fetch('http://localhost:3000/save', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ code, language })
+            }).then(response => response.json())
+                .then(data => {
+                    alert('Code saved successfully!');
+                }).catch(error => {
+                console.error('Error:', error);
+            });
+        });
+
+        // 从服务器加载代码
+        document.getElementById('load-button').addEventListener('click', function () {
+            fetch('http://localhost:3000/load')
+                .then(response => response.json())
+                .then(data => {
+                    if (data.code && data.language) {
+                        monaco.editor.setModelLanguage(editor.getModel(), data.language);
+                        editor.setValue(data.code);
+                    }
+                }).catch(error => {
+                console.error('Error:', error);
+            });
+        });
+    });
+</script>
+</body>
+</html>
+-->
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Monaco Editor with Custom Background</title>
+    <style>
+        #container {
+            width: 800px;
+            height: 600px;
+        }
+    </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.30.1/min/vs/loader.min.js"></script>
+</head>
+<body>
+<div>
+    <select id="language-selector">
+        <option value="javascript">JavaScript</option>
+        <option value="python">Python</option>
+    </select>
+    <button id="save-button">Save</button>
+    <button id="load-button">Load</button>
+</div>
+<div id="container"></div>
+<script>
+    require.config({ paths: { 'vs': 'https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.30.1/min/vs' } });
+    require(['vs/editor/editor.main'], function () {
+        // 定义示例代码
+        const exampleCode = {
+            javascript: `// JavaScript example\nfunction helloWorld() {\n    console.log('Hello, world!');\n}\nhelloWorld();`,
+            python: `# Python example\ndef hello_world():\n    print('Hello, world!')\n\nhello_world()`
+        };
+
+        // 定义自定义白色背景主题
+        monaco.editor.defineTheme('myWhiteTheme', {
+            base: 'vs', // 使用 light 基础主题
+            inherit: true, // 继承基础主题的配置
+            rules: [{ background: 'FFFFFF' }],
+            colors: {
+                'editor.background': '#FFFFFF'
+            }
+        });
+
+        // 创建编辑器
+        let editor = monaco.editor.create(document.getElementById('container'), {
+            value: exampleCode.javascript,
+            language: 'javascript',
+            theme: 'myWhiteTheme' // 使用自定义主题
+        });
+
+        // 监听语言切换
+        document.getElementById('language-selector').addEventListener('change', function () {
+            let newLanguage = this.value;
+            monaco.editor.setModelLanguage(editor.getModel(), newLanguage);
+            editor.setValue(exampleCode[newLanguage]);
+        });
+
+        // 保存代码到服务器
+        document.getElementById('save-button').addEventListener('click', function () {
+            let code = editor.getValue();
+            let language = document.getElementById('language-selector').value;
+            fetch('http://localhost:3000/save', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ code, language })
+            }).then(response => response.json())
+                .then(data => {
+                    alert('Code saved successfully!');
+                }).catch(error => {
+                console.error('Error:', error);
+            });
+        });
+
+        // 从服务器加载代码
+        document.getElementById('load-button').addEventListener('click', function () {
+            fetch('http://localhost:3000/load')
+                .then(response => response.json())
+                .then(data => {
+                    if (data.code && data.language) {
+                        monaco.editor.setModelLanguage(editor.getModel(), data.language);
+                        editor.setValue(data.code);
+                    }
+                }).catch(error => {
+                console.error('Error:', error);
+            });
+        });
+    });
+</script>
+</body>
+</html>

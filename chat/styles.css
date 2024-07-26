@@ -1,0 +1,64 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    overflow-x: hidden; /* 禁用横向滚动条 */
+}
+
+#list {
+    list-style-type: none;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 60px; /* 确保底部按钮不会遮挡最后一个li */
+}
+
+#list li {
+    margin-bottom: 15px;
+    width: 80%;
+    box-sizing: border-box;
+    position: relative;
+}
+
+#insertButton {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.animated-div {
+    width: 100%;
+    height: 30px;
+    opacity: 0;
+    transition: opacity 1.5s, transform 1.5s;
+}
+
+.animated-div.show-left {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.animated-div.show-right {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.odd {
+    background-color: red;
+    transform: translateX(-100vw); /* 改为视口宽度 */
+}
+
+.even {
+    background-color: blue;
+    transform: translateX(100vw); /* 改为视口宽度 */
+}
+
+.animated-div.remove {
+    transform: translateX(100vw);
+    opacity: 0;
+}

@@ -1,0 +1,199 @@
+<!--
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Record, Play, and Upload</title>
+</head>
+<body>
+<h1>Record, Play, and Upload</h1>
+<button id="recordButton">Start Recording</button>
+<button id="stopButton" disabled>Stop Recording</button>
+<button id="uploadButton" disabled>Upload Recording</button>
+<p id="status"></p>
+<audio id="audioPlayback" controls></audio>
+<p id="transcript"></p>
+
+<script>
+    let mediaRecorder;
+    let recordedChunks = [];
+    let audioBlob;
+
+    async function startRecording() {
+        try {
+            const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+            mediaRecorder = new MediaRecorder(stream);
+            mediaRecorder.ondataavailable = event => {
+                if (event.data.size > 0) {
+                    recordedChunks.push(event.data);
+                }
+            };
+            mediaRecorder.onstop = () => {
+                audioBlob = new Blob(recordedChunks, { type: 'audio/webm' });
+                const audioUrl = URL.createObjectURL(audioBlob);
+                document.getElementById('audioPlayback').src = audioUrl;
+                document.getElementById('uploadButton').disabled = false;
+                recordedChunks = [];
+            };
+
+            mediaRecorder.start();
+            document.getElementById('status').innerText = 'Recording...';
+            document.getElementById('recordButton').disabled = true;
+            document.getElementById('stopButton').disabled = false;
+        } catch (err) {
+            console.error('startRecording Error:', err);
+            alert('暂无路由权限')
+            document.getElementById('status').innerText = 'Microphone access denied. Please allow microphone access.';
+        }
+    }
+
+    document.getElementById('recordButton').addEventListener('click', () => {
+        startRecording();
+    });
+
+    document.getElementById('stopButton').addEventListener('click', () => {
+        if (mediaRecorder) {
+            mediaRecorder.stop();
+            document.getElementById('status').innerText = 'Stopped';
+            document.getElementById('recordButton').disabled = false;
+            document.getElementById('stopButton').disabled = true;
+        }
+    });
+
+    document.getElementById('uploadButton').addEventListener('click', () => {
+        const formData = new FormData();
+        formData.append('audio', audioBlob, 'recording.webm');
+
+        fetch('/upload', {
+            method: 'POST',
+            body: formData
+        })
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('transcript').innerText = data.transcript;
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+
+        document.getElementById('uploadButton').disabled = true;
+    });
+</script>
+</body>
+</html>
+-->
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Record, Play, and Upload</title>
+</head>
+<body>
+<h1>Record, Play, and Upload</h1>
+<button id="recordButton">Start Recording</button>
+<button id="stopButton" disabled>Stop Recording</button>
+<button id="uploadButton" disabled>Upload Recording</button>
+<p id="status"></p>
+<audio id="audioPlayback" controls></audio>
+<p id="transcript"></p>
+
+<button id="queryPermission">query permission</button>
+
+<script>
+    let mediaRecorder;
+    let recordedChunks = [];
+    let audioBlob;
+
+    async function startRecording() {
+        try {
+            const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+            mediaRecorder = new MediaRecorder(stream);
+            mediaRecorder.ondataavailable = event => {
+                if (event.data.size > 0) {
+                    recordedChunks.push(event.data);
+                }
+            };
+            mediaRecorder.onstop = () => {
+                audioBlob = new Blob(recordedChunks, { type: 'audio/webm' });
+                const audioUrl = URL.createObjectURL(audioBlob);
+                document.getElementById('audioPlayback').src = audioUrl;
+                document.getElementById('uploadButton').disabled = false;
+                recordedChunks = [];
+            };
+
+            mediaRecorder.start();
+            document.getElementById('status').innerText = 'Recording...';
+            document.getElementById('recordButton').disabled = true;
+            document.getElementById('stopButton').disabled = false;
+        } catch (err) {
+            if (err.name === 'NotAllowedError' || err.name === 'PermissionDeniedError') {
+                document.getElementById('status').innerText = 'Microphone access denied. Please allow microphone access in your browser settings.';
+            } else {
+                document.getElementById('status').innerText = 'An error occurred: ' + err.message;
+            }
+        }
+    }
+
+    document.getElementById('recordButton').addEventListener('click', () => {
+        startRecording();
+    });
+
+    document.getElementById('stopButton').addEventListener('click', () => {
+        if (mediaRecorder) {
+            mediaRecorder.stop();
+            document.getElementById('status').innerText = 'Stopped';
+            document.getElementById('recordButton').disabled = false;
+            document.getElementById('stopButton').disabled = true;
+        }
+    });
+
+    document.getElementById('uploadButton').addEventListener('click', () => {
+        const formData = new FormData();
+        formData.append('audio', audioBlob, 'recording.webm');
+
+        fetch('/upload', {
+            method: 'POST',
+            body: formData
+        })
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('transcript').innerText = data.transcript;
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+
+        document.getElementById('uploadButton').disabled = true;
+    });
+
+
+    document.getElementById('queryPermission').addEventListener('click', () => {
+        /* navigator.permissions.query({ name: 'microphone' })
+            .then(result => {
+                console.log('Microphone permission status:', result.state);
+                if (result.state === 'granted') {
+                    document.getElementById('status').innerText = 'Microphone permission granted';
+                } else if (result.state === 'denied') {
+                    document.getElementById('status').innerText = 'Microphone permission denied';
+                } else {
+                    document.getElementById('status').innerText = 'Microphone permission unknown';
+                }
+            })
+            .catch(error => {
+                console.error('Error querying microphone permission:', error);
+            });*/
+
+        navigator.mediaDevices.getUserMedia({ audio: true })
+            .then(() => {
+                document.getElementById('status').innerText = 'Microphone permission granted';
+            })
+            .catch(error => {
+                if (error.name === 'NotAllowedError' || error.name === 'PermissionDeniedError') {}
+            })
+
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Speech Recognition Example</title>
+</head>
+<body>
+<h1>Speech Recognition Example</h1>
+<button id="startButton">Start Recognition</button>
+<p id="result"></p>
+
+<script>
+    // 检查浏览器是否支持Web Speech API
+    if (!('webkitSpeechRecognition' in window)) {
+        alert("This browser does not support Web Speech API");
+    } else {
+        var recognition = new webkitSpeechRecognition();
+        console.log('recognition', recognition)
+        recognition.continuous = true;
+        recognition.interimResults = false;
+        // recognition.lang = 'en-US'; // 设置语言
+        recognition.lang = ['zh-CN']; // 设置语言
+
+        recognition.onstart = function() {
+            console.log('Speech recognition started');
+        };
+
+        recognition.onresult = function(event) {
+            var final_transcript = '';
+            for (var i = event.resultIndex; i < event.results.length; ++i) {
+                if (event.results[i].isFinal) {
+                    final_transcript += event.results[i][0].transcript;
+                }
+            }
+            document.getElementById('result').innerText = final_transcript;
+        };
+
+        recognition.onerror = function(event) {
+            console.error('Speech recognition error', event.error);
+        };
+
+        recognition.onend = function() {
+            console.log('Speech recognition ended');
+        };
+
+        document.getElementById('startButton').addEventListener('click', function() {
+            recognition.start();
+        });
+    }
+</script>
+</body>
+</html>
