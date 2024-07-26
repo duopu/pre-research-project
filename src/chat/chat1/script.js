@@ -30,5 +30,5 @@ function removeDiv(listItem) {
     // 在动画结束后删除元素
     setTimeout(() => {
         listItem.remove();
-    }, 500); // 动画持续时间为1.5秒
+    }, 1000); // 动画持续时间为1.5秒
 }
