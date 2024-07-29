@@ -15,11 +15,12 @@ body {
 }
 
 #list li {
-    margin-bottom: 15px;
+    height: 60px;
     width: 80%;
     box-sizing: border-box;
     position: relative;
     overflow: hidden; /* 确保子元素不会溢出 */
+    margin-bottom: 15px;
 }
 
 #insertButton {
@@ -34,7 +35,7 @@ body {
 
 .animated-div {
     width: 100%;
-    height: 60px;
+    height: 100%;
     opacity: 0;
     transition: opacity 1s;
 }
@@ -51,17 +52,49 @@ body {
     background-color: blue;
 }
 
-.animated-div.remove {
-    animation: slide-out 1s forwards;
+.remove {
+    animation: slide-out 0.5s forwards;
+    /*animation: slide-out .25s infinite step-start both;*/
 }
 
 @keyframes slide-out {
-    0% {
-        transform: translateX(0);
+    /*0% {
+        !*transform: translateX(0);*!
+        !*transform: translateY(100%);*!
+        !*margin-bottom: 15px;*!
         opacity: 1;
+        !*height: 100%;*!
+    }
+    25% {
+        !*transform: translateY(75%);*!
+        !*margin-bottom: 12px;*!
+        opacity: 0.75;
+        !*height: 75%;*!
+    }
+    50% {
+        !*transform: translateY(50%);*!
+        !*margin-bottom: 8px;*!
+        opacity: 0.5;
+        !*height: 50%;*!
+    }
+    75% {
+        !*transform: translateY(25%);*!
+        !*margin-bottom: 4px;*!
+        opacity: 0.25;
+        !*height: 25%;*!
     }
     100% {
-        transform: translateX(100%);
+        !*transform: translateX(100%);*!
+        !*transform: translateY(0);*!
+        !*margin-bottom: 0;*!
+        opacity: 0;
+        !*height: 0;*!
+    }*/
+    from {
+        opacity: 1;
+    }
+    to {
         opacity: 0;
     }
 }
+
