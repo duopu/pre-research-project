@@ -1,0 +1,22 @@
+{
+  "title": "我的應用",
+  "myMultiAgent":"我的智慧體",
+  "createMethod": {
+    "noCode": "零代碼",
+    "lowCode": "工作流",
+    "MultiAgent":"多智慧體"
+  },
+  "namePlaceholder": "請輸入名稱",
+  "noEdit":"技能正在稽核",
+  "status": {
+    "unpublish": "未發布",
+    "reviewing": "審核中",
+    "published": "已發布",
+    "waiting": "發佈中",
+    "downLine": "下架",
+    "rejected":"駁回"
+  },
+  "lastModifiedAt": "修改於 ",
+  "more": "更多"
+}
+
