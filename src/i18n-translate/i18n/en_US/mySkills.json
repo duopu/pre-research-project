@@ -1,22 +1,21 @@
 {
-  "title": "My Skills",
-  "myMultiAgent":"My intelligent agent",
-  "createMethod": {
-    "noCode": "No Code",
-    "lowCode": "Workflow",
-    "MultiAgent":"Multi Agent"
-  },
-  "namePlaceholder": "Please enter skills' name",
-  "noEdit":"Workflow is under review",
-  "status": {
-    "unpublish": "Unpublish",
-    "reviewing": "Reviewing",
-    "published": "Published",
-    "waiting": "Publishing",
-    "downLine": "down shelves",
-    "rejected":"rejected"
-  },
-  "lastModifiedAt": "Last modified at ",
-  "more": "More"
+    "title": "My Skills",
+    "myMultiAgent": "My intelligent agent",
+    "createMethod": {
+        "noCode": "No Code",
+        "lowCode": "Workflow",
+        "MultiAgent": "Multi Agent"
+    },
+    "namePlaceholder": "Please enter skills' name",
+    "noEdit": "Workflow is under review",
+    "status": {
+        "unpublish": "Unpublish",
+        "reviewing": "Reviewing",
+        "published": "Published",
+        "waiting": "Publishing",
+        "downLine": "down shelves",
+        "rejected": "rejected"
+    },
+    "lastModifiedAt": "Last modified at ",
+    "more": "More"
 }
-

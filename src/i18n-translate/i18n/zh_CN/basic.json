@@ -9,7 +9,8 @@
     "automatic-login": "自动登录",
     "forgot-password": "忘记密码",
     "login": "登录",
-    "suggest": "建议使用1920*1080以上分辨率"
+    "suggest": "建议使用1920*1080以上分辨率",
+    "succc": "测试合并的效果"
   },
   "layout": {
     "user-setting": "语言设定",
