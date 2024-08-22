@@ -4,9 +4,9 @@ const path = require('path');
 const { translateWithOptions } = require('./transApi');
 
 // 配置文件夹路径
-const zh_CN_Dir = '../zh_CN';
-const zh_TW_Dir = '../zh_TW';
-const en_US_Dir = '../en_US';
+const zh_CN_Dir = path.join(__dirname, '../zh_CN');
+const zh_TW_Dir = path.join(__dirname, '../zh_TW');
+const en_US_Dir = path.join(__dirname, '../en_US');
 
 // 递归翻译并合并对象
 const translateAndMerge = async (sourceObj, targetObj, targetLang) => {
