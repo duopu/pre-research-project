@@ -1,7 +1,29 @@
 const fs = require('fs');
 const path = require('path');
-// const translate = require('@vitalets/google-translate-api');
+const chalk = require('chalk');
 const { translateWithOptions } = require('./transApi');
+
+
+// 获取 Node.js 版本号
+const [major, minor, patch] = process.versions.node.split('.').map(Number);
+
+// 定义最低版本号
+const requiredVersion = { major: 18, minor: 18, patch: 0 };
+
+
+if (major < requiredVersion.major || (major === requiredVersion.major && minor < requiredVersion.minor) || (major === requiredVersion.major && minor === requiredVersion.minor && patch < requiredVersion.patch)) {
+    const message = '\n\n' + '运行终止: Node.js 版本必须大于 18.18.0不然有些api不支持：\n'.repeat(10)
+            .split('\n')
+            .map(line => ' '.repeat(20) + line + ' '.repeat(20)) // 增加空格以扩大视觉效果
+            .join('\n\n') + // 增加行间距
+        '\n\n';
+
+    console.log(chalk.bold.red(message));
+    process.exit(1); // 终止执行任务
+}
+
+console.log('Node.js 版本满足要求，继续执行任务。');
+
 
 // 配置文件夹路径
 const zh_CN_Dir = path.join(__dirname, '../zh_CN');
