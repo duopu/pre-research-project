@@ -92,17 +92,8 @@ const enUsToZhCn = (word) => getTranslation(word, { "from": "en", "to": "zh" });
 const translateWithOptions = (word, options) => getTranslation(word, { ...options });
 
 
-// zhCnToZhTw('存档').then(res => {
-//     console.log(res);
-// }).catch(err => {
-//     console.log(err);
-// }).finally((f) => {
-//     console.log('finally', f);
-// });
-
 // (async () => {
 //     let ret = await zhCnToZhTw('存档');
-//
 //     console.log('ret===================', ret);
 // })();
 

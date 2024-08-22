@@ -1,12 +1,32 @@
 const fs = require('fs');
 const path = require('path');
-const { translate } = require('./translate');
+// const translate = require('@vitalets/google-translate-api');
+const { translateWithOptions } = require('./transApi');
 
 // 配置文件夹路径
 const zh_CN_Dir = '../zh_CN';
 const zh_TW_Dir = '../zh_TW';
 const en_US_Dir = '../en_US';
 
+// 递归翻译并合并对象
+const translateAndMerge = async (sourceObj, targetObj, targetLang) => {
+    let result = { ...targetObj };
+
+    for (const key in sourceObj) {
+        if (typeof sourceObj[key] === 'object') {
+            result[key] = await translateAndMerge(sourceObj[key], targetObj[key] || {}, targetLang);
+        } else {
+            if (!targetObj[key]) {
+                const translation = await translateWithOptions(sourceObj[key], { from: 'zh', to: targetLang });
+                result[key] = translation;
+            } else {
+                result[key] = targetObj[key];
+            }
+        }
+    }
+
+    return result;
+};
 
 // 处理翻译文件
 const processFile = async (fileName) => {
@@ -24,16 +44,12 @@ const processFile = async (fileName) => {
     let zh_TW_Data = fs.existsSync(zh_TW_FilePath) ? JSON.parse(fs.readFileSync(zh_TW_FilePath, 'utf8')) : {};
     let en_US_Data = fs.existsSync(en_US_FilePath) ? JSON.parse(fs.readFileSync(en_US_FilePath, 'utf8')) : {};
 
-    const zh_TW_Translation = await translateObject(zh_CN_Data, 'zh-TW');
-    const en_US_Translation = await translateObject(zh_CN_Data, 'en');
-
-    // 合并翻译
-    zh_TW_Data = { ...zh_TW_Translation, ...zh_TW_Data };
-    en_US_Data = { ...en_US_Translation, ...en_US_Data };
+    const zh_TW_Translation = await translateAndMerge(zh_CN_Data, zh_TW_Data, 'cht');
+    const en_US_Translation = await translateAndMerge(zh_CN_Data, en_US_Data, 'en');
 
     // 写入文件
-    fs.writeFileSync(zh_TW_FilePath, JSON.stringify(zh_TW_Data, null, 4), 'utf8');
-    fs.writeFileSync(en_US_FilePath, JSON.stringify(en_US_Data, null, 4), 'utf8');
+    fs.writeFileSync(zh_TW_FilePath, JSON.stringify(zh_TW_Translation, null, 4), 'utf8');
+    fs.writeFileSync(en_US_FilePath, JSON.stringify(en_US_Translation, null, 4), 'utf8');
 
     console.log(`Translated and updated: ${ fileName }`);
 };
@@ -48,19 +64,3 @@ fs.readdir(zh_CN_Dir, (err, files) => {
         processFile(file);
     });
 });
-
-
-// 递归翻译对象
-const translateObject = async (obj, targetLang) => {
-    let result = {};
-    for (const key in obj) {
-        if (typeof obj[key] === 'object') {
-            result[key] = await translateObject(obj[key], targetLang);
-        } else {
-            const translation = await translate(obj[key], { from: 'zh-CN', to: targetLang });
-            // result[key] = translation.text;
-            result[key] = translation;
-        }
-    }
-    return result;
-};
