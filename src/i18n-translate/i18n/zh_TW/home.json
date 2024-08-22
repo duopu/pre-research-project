@@ -1,0 +1,157 @@
+{
+  "desc": "鼎捷知識中台-原生AI應用編輯平台",
+  "greeting": {
+    "01": "你好，歡迎來到IndepthAI·無界創作中心!",
+    "02": "如果您現在就有创作靈感可以直接",
+    "03": " 輸入您的創意",
+    "04": "，我可以直接幫您創建",
+    "05": "當您需要靈感時，可以去",
+    "06": "發現",
+    "07": "逛逛其他創作者創建的技能，希望可以激發您的創作靈感~"
+  },
+  "guide": {
+    "01": "讓我們快速創建一個智慧應用吧！ 您可以在下方輸入框描述您想要的智慧應用"
+  },
+  "noCode": {
+    "title": "零代碼智能體",
+    "desc": "用戶表達意圖、提供需求描述，引入知識庫、工具等能力，零程式碼編輯創建智能體",
+    "name": "名稱",
+    "nameAvoidEmpty": "請輸入名稱",
+    "setting": "設定",
+    "settingAvoidEmpty": "請輸入設定",
+    "settingPlaceholder": "請輸入關鍵詞（場景想法），組織話術可自行輸入，輸入請參考下方示例",
+    "settingSample": "設定示例",
+    "settingSamplePlaceholder": "一個用於執行 Google SERP 搜索並提取片段和網頁的工具。輸入應該是一個搜索查詢。",
+    "editSkillTitle": "編輯零代碼",
+    "nameOfSkill": "應用名稱",
+    "nameOfSkillAvoidEmpty": "請輸入應用名稱",
+    "descOfSkill": "應用描述",
+    "descofSkillAvoidEmpty": "請輸入應用描述",
+    "logoOfSkill": "圖標",
+    "saveTime": "保存時間",
+    "status": {
+      "draft": "草稿",
+      "published": "已發布",
+      "reviewing": "審核中"
+    },
+    "configs": {
+      "promption": "提示詞",
+      "promptionTooltip": "用於對大模型的回覆做出相應指令約束",
+      "promptionPlaceholder": "使用自然語言填寫應用的人物設定、功能和限制條件",
+      "promptionOptimization": "提示詞優化",
+      "llm": "大模型配置",
+      "llmTooltip": "選擇合適的大模型，並調整其溫度等因素",
+      "params": "參數設置",
+      "temperature": "溫度",
+      "temperatureTooltip": "控制隨機性。降低溫度意味著模型將產生更多重複和確定性的響應。增加溫度會導致更多意外或創造性的響應。嘗試調整溫度或Top P，但不要同時調整兩者",
+      "token": "最大token",
+      "tokenTooltip": "設置每個模型響應的令牌數量限制。API支持最多15000個令牌，這些令牌在提示（包括系統消息、示例、消息歷史紀錄和用戶查詢）和模型響應之間共享。一個令牌大約是典型英文文本的4個字符",
+      "topP": "Top P",
+      "topPTooltip": "與溫度類似，這控制隨機性但使用不同的方法。 降低Top P將縮小模型的權杖選擇範圍，使其更有可能選擇權杖。 新增Top P將讓模型從高概率和低概率的權杖中進行選擇。 嘗試調整溫度或Top P，但不要同時調整兩者",
+      "recall": "召回設置",
+      "esRecallNum": "ES召回數量",
+      "esRecallNumTooltip": "默認3，區間[3,20]",
+      "milvusRecallNum": "Milvus召回數量",
+      "milvusRecallNumTooltip": "默認3，區間[3,10]",
+      "recallThreshold": "召回閾值",
+      "recallLimitTooltip": "自定義設置召回閾值",
+      "kbs": "知識庫",
+      "kbsTooltip": "私域知識問答，並可關聯知識中台知識庫",
+      "kbsPlaceholder": "添加知識庫後，將根據知識庫內容回答用戶問題。",
+      "plugin": "插件",
+      "pluginPlaceholder": "插件能够讓應用調用外部API，例如蒐索資訊、流覽網頁、生成圖片等，擴展應用的能力和使用場景。",
+      "pluginAddition": "添加插件",
+      "pluginCreation": "創建插件",
+      "agentAddition": "添加智能體",
+      "agentCreation": "創建智能體",
+      "prologue": "對話開場白",
+      "prologueTooltip": "在對話型應用中，讓AI首先發言可以增強與用戶的互動性，讓用戶感到親切舒適",
+      "prologueGreeting": "開場白文案",
+      "prologueGreetingPlaceholder": "在此輸入問答助手的開場白",
+      "prologuePresetQuestion": "開場白預設問題",
+      "prologuePresetPlaceholder": "请输入预设问题",
+      "background": "背景圖片",
+      "backgroundTooltip": "增加對話背景圖片，提供沈浸式體驗",
+      "systemTooltip": "設置系統交互如語音等",
+      "backgroundUpload": "上傳背景圖片",
+      "backgroundGuide": "點擊上傳或將圖片拖拽到此處",
+      "backgroundAcceptance": "支持上傳png、jpg、jpeg格式圖片，圖片須小於2M且高度大於640px",
+      "avatarAcceptance": "支持上傳jpg、bmp、gif、ico、pcx、jpeg、tif、png、raw、tga格式圖片，圖片須小於2M",
+      "backgroundOrientation": "寬屏展示",
+      "backgroundPortrait": "豎屏展示",
+      "generating": "生成中...",
+      "optimizing": "優化中...",
+      "backgroundAcceptanceIcon": "支持上傳png、jpg、jpeg格式圖片，圖片須小於2M且圖片尺寸30*60PX",
+      "system-interaction": "系統交互",
+      "multiple-task": "多輪對話",
+      "fromExcutor": "執行器推送"
+    }
+  },
+  "lowCode": {
+    "title": "工作流智能體",
+    "desc": "通過拖拽搭建複雜場景，融合大模型、知識庫、工具等AI組件，便捷開發智能體",
+    "nameOfWorkflow": "工作流名稱",
+    "nameOfWorkflowAvoidEmpty": "請輸入工作流名稱",
+    "nameOfWorkflowPlaceholder": "請給工作流起一個好聽的名稱",
+    "descOfWorkflow": "工作流描述",
+    "descOfWorkflowAvoidEmpty": "請輸入工作流描述",
+    "descOfWorkflowPlaceholder": "請輸入描述"
+  },
+  "agent": {
+    "flow-img": "多智能體圖片",
+    "descriptionVail": "多智能體描述不能為空"
+  },
+  "multAgent": {
+    "title": "多智能體協同",
+    "desc": "鼎捷自研AI模型驅動複雜業務場景，多智能體協同實現自感知、自規劃、自執行",
+    "nameOfMultAgent": "多智能體名稱",
+    "nameOfMultAgentAvoidEmpty": "請輸入多智能體名稱",
+    "nameOfMultAgentPlaceholder": "請給多智能體起一個好聽的名稱",
+    "descOfMultAgent": "多智能體描述",
+    "descOfMultAgentAvoidEmpty": "請輸入多智能體描述",
+    "descOfMultAgentPlaceholder": "請輸入描述"
+  },
+  "tab": {
+    "configuration": "應用創作",
+    "dashboard": "日誌監控",
+    "publish": "發布詳情"
+  },
+  "createMethod": {
+    "noCode": "零代碼",
+    "lowCode": "工作流"
+  },
+  "publish": {
+    "setting": "發布設置",
+    "range": "發布範圍",
+    "private": "企業廣場",
+    "other": "其他",
+    "official": "是否設置為官方應用",
+    "official1": "是否設置為官方應用",
+    "channel": "渠道",
+    "status": "狀態",
+    "operation": "操作",
+    "web": "網頁端",
+    "webDesc": "開箱即用的AI WebApp",
+    "api": "API",
+    "apiDesc": "以API方式集成至企業業務系統",
+    "accessNow": "立即訪問"
+  },
+  "tag": {
+    "create": "新建分類",
+    "name": "分類",
+    "tooltip": "設置應用歸屬分類",
+    "nameAvoidEmpty": "請輸入分類名稱"
+  },
+  "chat": {
+    "placeholder": "請告訴我你想創建一個什麼樣的技能，可以描述一下應用的人設、具備哪些功能、目標群體等"
+  },
+  "plsEnter": "请输入...",
+  "plsEnterName": "請輸入名稱",
+  "try": "你可以試試",
+  "createNow": "立即創建",
+  "pressEnter": "使用 Enter 發送消息",
+  "test": "調試預覽",
+  "avoidPromptionEmpty": "提示詞不能為空",
+  "avoidPromptionEmpty1": "提示詞不能為空，請確認是否已輸入提示詞並保存。"
+}
+
