@@ -38,7 +38,8 @@ const getTranslation = async (query, options = {}) => {
             let result = await getEventStream(data);
             resolve(result);
         }).catch(error => {
-            console.error('error===', error);
+            console.error('翻译api报错 error===', error);
+            resolve(query);
         });
     })
 
