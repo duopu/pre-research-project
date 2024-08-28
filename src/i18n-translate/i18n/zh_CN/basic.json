@@ -284,5 +284,9 @@
     "anonymousSession": "未命名会话",
     "newChatBelow": "以下为新会话",
     "speaking": "语音输入中..."
+  },
+  "TestString": "测试字符串",
+  "TestObject": {
+    "ObeTest": "对象123"
   }
 }

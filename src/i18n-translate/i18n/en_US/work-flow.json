@@ -154,10 +154,10 @@
     "selected": "selected",
     "submit": "Confirm release",
     "descriptionEntry": "Please enter a workflow description",
-    "knowledgeBase":"Knowledge retrieval",
-    "add-knowledge":"Add knowledge",
-    "inReview":"in review",
-    "rejected":"reject"
+    "knowledgeBase": "Knowledge retrieval",
+    "add-knowledge": "Add knowledge",
+    "inReview": "in review",
+    "rejected": "reject"
   },
   "node": {
     "node-name": "Node Name",
@@ -244,8 +244,8 @@
   "errorTips": {
     "placeInputName": "Please enter a name",
     "avoidSpecialChar": "Only Chinese, letters, numbers, and baselines can be entered",
-    "noSKC":"You do not have authorization for this application yet. Please apply to your enterprise administrator to activate it。",
-    "deptUser":"You must select a user or department"
+    "noSKC": "You do not have authorization for this application yet. Please apply to your enterprise administrator to activate it。",
+    "deptUser": "You must select a user or department"
   },
   "tips": {
     "p-enter": "Please enter",
@@ -266,14 +266,19 @@
     "cancellation": "added",
     "add": "ADD",
     "content": "content",
-    "placeSelectKnowledge":"Please select a knowledge base"
+    "placeSelectKnowledge": "Please select a knowledge base",
+    "required-tips": "Required field!"
   },
   "remark": {
     "rang": {
       "P1": "1. Publish to Skill Square: The skill is presented in the skill square. The publisher can further set the visible range.",
       "P2": "If the visible range is the current enterprise, only users within the current tenant are visible;",
       "P3": "If the visible range is all tenants, then all users of the skill square are visible",
-      "P4": "2. Publish to specified users: The skill is not visible in the skills square, and it will be directly published to the user's subscription area. Users can use it in the subscription area without subscribing."
+      "P4": "2. Publish to specified users: The skill is not visible in the skills square, and it will be directly published to the user's subscription area. Users can use it in the subscription area without subscribing.",
+      "p1": "1. Publish to Skill Square: Skills are presented in the Skill Square.",
+      "p2": "If the visible range is the current enterprise, only users within the current tenant will be visible;",
+      "p3": "If the visible range is for all tenants, then all users of Skill Square will be visible",
+      "p4": "2. Publish to designated users: The skill is not visible in the skill square and will be directly published to the user's subscription area. Users can use it in the subscription area without subscribing."
     }
   },
   "uploadFile": {
@@ -294,4 +299,3 @@
     "switchingLines": "Lines"
   }
 }
-

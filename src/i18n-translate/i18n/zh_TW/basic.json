@@ -102,7 +102,8 @@
     "locationDocument": "所在文檔",
     "numberOfPages": "所在頁數",
     "characterCount": "字符數",
-    "knowledgeNumTip": "增強知識點最多為10條"
+    "knowledgeNumTip": "增強知識點最多為10條",
+    "slicePages": "切片頁數"
   },
   "plugin": {
     "createBtn": "新建插件",
@@ -284,5 +285,9 @@
     "anonymousSession": "未命名會話",
     "newChatBelow": "以下為新會話",
     "speaking": "語音輸入中..."
+  },
+  "TestString": "測試字串",
+  "TestObject": {
+    "ObeTest": "對象123"
   }
 }

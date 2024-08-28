@@ -169,7 +169,8 @@
     "inputValueTip": "Input value cannot be empty",
     "executionMethod": "Execution method",
     "synchronous": "synchronous",
-    "asynchronous": "asynchronous"
+    "asynchronous": "asynchronous",
+    "parameterType": "Type"
   },
   "tag": {
     "create": "Create tag",
@@ -283,5 +284,9 @@
     "anonymousSession": "Anonymous session",
     "newChatBelow": "New Chat Below",
     "speaking": "Speaking..."
+  },
+  "TestString": "Test string",
+  "TestObject": {
+    "ObeTest": "Object 123"
   }
 }

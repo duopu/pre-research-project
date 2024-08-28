@@ -154,10 +154,10 @@
     "selected": "已選擇",
     "submit": "確定發佈",
     "descriptionEntry": "請輸入工作流描述",
-    "knowledgeBase":"知識庫檢索",
-    "add-knowledge":"添加知識庫",
-    "inReview":"稽核中",
-    "rejected":"駁回"
+    "knowledgeBase": "知識庫檢索",
+    "add-knowledge": "添加知識庫",
+    "inReview": "稽核中",
+    "rejected": "駁回"
   },
   "node": {
     "node-name": "節點名稱",
@@ -244,8 +244,8 @@
   "errorTips": {
     "placeInputName": "請輸入名稱",
     "avoidSpecialChar": "只能輸入中文、字母、數位和底線",
-    "noSKC":"您尚無此應用授權，請向所屬企業管理員申請開通。",
-    "deptUser":"必須選擇一個用戶或部門"
+    "noSKC": "您尚無此應用授權，請向所屬企業管理員申請開通。",
+    "deptUser": "必須選擇一個用戶或部門"
   },
   "tips": {
     "p-enter": "請輸入",
@@ -267,7 +267,7 @@
     "cancellation": "已添加",
     "add": "添加",
     "content": "內容",
-    "placeSelectKnowledge":"請選擇知識庫"
+    "placeSelectKnowledge": "請選擇知識庫"
   },
   "remark": {
     "rang": {
@@ -295,4 +295,3 @@
     "switchingLines": "切換折線"
   }
 }
-

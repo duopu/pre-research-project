@@ -3,6 +3,7 @@ const path = require('path');
 const chalk = require('chalk');
 const { translateWithOptions } = require('./transApi');
 
+/*
 
 // 获取 Node.js 版本号
 const [major, minor, patch] = process.versions.node.split('.').map(Number);
@@ -23,6 +24,7 @@ if (major < requiredVersion.major || (major === requiredVersion.major && minor <
 }
 
 console.log('Node.js 版本满足要求，继续执行任务。');
+*/
 
 
 // 配置文件夹路径
@@ -70,8 +72,8 @@ const processFile = async (fileName) => {
     const en_US_Translation = await translateAndMerge(zh_CN_Data, en_US_Data, 'en');
 
     // 写入文件
-    fs.writeFileSync(zh_TW_FilePath, JSON.stringify(zh_TW_Translation, null, 4), 'utf8');
-    fs.writeFileSync(en_US_FilePath, JSON.stringify(en_US_Translation, null, 4), 'utf8');
+    fs.writeFileSync(zh_TW_FilePath, JSON.stringify(zh_TW_Translation, null, 2), 'utf8');
+    fs.writeFileSync(en_US_FilePath, JSON.stringify(en_US_Translation, null, 2), 'utf8');
 
     console.log(`Translated and updated: ${ fileName }`);
 };
