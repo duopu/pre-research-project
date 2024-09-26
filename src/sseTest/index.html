@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SSE Test</title>
+</head>
+<body>
+<h1>Server-Sent Events</h1>
+<div id="messages"></div>
+
+<script>
+    const eventSource = new EventSource('http://localhost:3000/events');
+
+    eventSource.onmessage = function(event) {
+        const messageDiv = document.getElementById('messages');
+        const newMessage = document.createElement('p');
+        console.log('event.data', event.data);
+        newMessage.textContent = event.data;
+        messageDiv.appendChild(newMessage);
+    };
+
+    eventSource.onerror = function(event) {
+        console.error("SSE发生错误", event);
+    };
+</script>
+</body>
+</html>
