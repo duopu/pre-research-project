@@ -1,0 +1,73 @@
+<div class="qqq" style="display: flex; height: 100%; border: 1px solid red" cdkDropListGroup>
+  <div class="q-left">
+    <div
+      cdkDropList
+      [cdkDropListData]="items"
+      class="example-list"
+      id="new0"
+      [cdkDropListConnectedTo]="ss"
+      cdkDropListSortingDisabled
+      (cdkDropListDropped)="drop($event)"
+    >
+      <div class="example-box" *ngFor="let item of items" cdkDrag [cdkDragData]="item.id" (cdkDragMoved)="dragMoved($event)">
+        {{ item.id }}
+
+        <div *cdkDragPreview style="width: 200px; height: 40px; border: 1px solid red">cdkDragPreview====</div>
+
+        <div class="example-custom-placeholder" *cdkDragPlaceholder>cdkDragPlaceholder</div>
+      </div>
+    </div>
+
+    <button (click)="log()">log</button>
+  </div>
+
+  <div class="q-right">
+    <div
+      style="height: 100%; border: 1px solid blue"
+      cdkDropList
+      [cdkDropListData]="nodes"
+      [id]="'main'"
+      [cdkDropListConnectedTo]="dropTargetIds"
+      (cdkDropListDropped)="drop($event)"
+      [cdkDropListSortingDisabled]="true"
+    >
+      <!--[cdkDragDisabled]="node.id === 'item 3'"-->
+      <div *ngFor="let node of nodes" cdkDrag [cdkDragData]="node.id" (cdkDragMoved)="dragMoved($event)">
+        <ng-container *ngTemplateOutlet="tmplNode; context: { node: node, level: 1 }"></ng-container>
+      </div>
+
+      <div class="last-line" *ngIf="showLastLine" style="width: 100%; height: 5px; margin-top: 10px; background: yellow"></div>
+    </div>
+  </div>
+</div>
+
+<ng-template #tmplNode let-node="node" let-level="level">
+  <div class="node-item" [attr.data-id]="node.id" [attr.id]="'node-' + node.id">
+    <div class="node-title">
+      {{ node.id }}
+      <span class="item-notes"> {{ node?.children?.length }} </span>
+    </div>
+
+    <div
+      *ngIf="node?.children?.length"
+      class="node-children"
+      cdkDropList
+      [cdkDropListData]="node.children"
+      [id]="node.id"
+      [cdkDropListConnectedTo]="dropTargetIds"
+      (cdkDropListDropped)="drop($event)"
+      [cdkDropListSortingDisabled]="true"
+    >
+      <div *ngFor="let child of node.children" cdkDrag class="children-item" [cdkDragData]="child.id" (cdkDragMoved)="dragMoved($event)">
+        <ng-container *ngTemplateOutlet="tmplNode; context: { node: child, level: level + 1 }"></ng-container>
+      </div>
+    </div>
+  </div>
+</ng-template>
+
+<hr />
+<p><strong>current drag drop action:</strong></p>
+<pre>{{ dropActionTodo | json }}</pre>
+<hr />
+<p><strong>tree data</strong></p>
+<pre>{{ nodes | json }}</pre>

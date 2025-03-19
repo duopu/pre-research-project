@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        @property --int {
+            syntax: "<integer>";
+            inherits: false;
+            initial-value: 6;
+        }
+
+        @property --hgt {
+            syntax: "<length>";
+            inherits: false;
+            initial-value: 0px;
+        }
+
+        @keyframes open {
+            to {
+                --int: 0;
+                --hgt: 60px;
+            }
+        }
+
+        @keyframes close {
+            to {
+                --int: 6;
+                --hgt: 0px;
+            }
+        }
+
+        .scroll-container {
+            width: 400px;
+            display: grid;
+            grid-template-rows: repeat(calc(var(--int)), var(--hgt));
+            transition: row-gap .3s cubic-bezier(.8, .5, .2, 1.4);
+
+            &:has(.open :checked) {
+                /* open action */
+                animation: open .3s ease-in-out forwards;
+
+                .open {
+                    display: none;
+                }
+
+                /* styling */
+                row-gap: 10px;
+
+                .items {
+                    color: rgb(113 124 158);
+                    transition: color .3s .1s;
+                }
+
+                .close {
+                    color: black
+                }
+            }
+
+            &:has(.close :checked) {
+                /* close action */
+                --int: 0;
+                --hgt: 60px;
+                animation: close .3s ease-in-out forwards;
+                /* styling */
+                row-gap: 0px;
+
+                .items {
+                    color: transparent;
+                    transition: color .3s;
+                }
+            }
+
+            /* following rules are for styling */
+
+            .items {
+                padding-inline: 20px;
+                border-radius: 10px;
+                background: linear-gradient(to right, rgb(220 223 235), rgb(212 232 242));
+                box-shadow: 0 0 4px rgb(164 173 204);
+                font: 12pt/60px 'poppins';
+                color: transparent;
+
+                &:is(label) {
+                    font-size: 14pt;
+                }
+
+            }
+
+            .open {
+                color: black !important;
+            }
+
+            p {
+                margin: 0;
+                pointer-events: none;
+            }
+
+            input {
+                appearance: none;
+            }
+
+            label {
+                cursor: pointer;
+            }
+        }
+
+        body {
+            /* 'body' style rules are for demo purposes only */
+            height: 100vh;
+            display: grid;
+            place-content: center;
+            margin: 0;
+            user-select: none;
+            -moz-user-select: none;
+            -webkit-user-select: none;
+        }
+    </style>
+</head>
+<body>
+<section class=scroll-container>
+    <label class='items close'>Close the messages<input type="radio" id="show11" name=radio/></label>
+    <p class=items>Alert from Project X</p>
+    <p class=items>Willow's appointment at <i>Scrubby's</i></p>
+    <p class=items>Message from (-_-)</p>
+    <p class=items>NYT Feed: <u>Weather In... (Read more)</u></p>
+    <p class=items>6 more items to check in your vacation list!</p>
+    <label class='items open'>Show the messages<input type="radio" id="hide11" name=radio/></label>
+</section>
+</body>
+</html>
